@@ -10,6 +10,8 @@ function myFunction_get() {
   var rs = getComputedStyle(r);
   // Alert the value of the --blue variable
   alert("The value of --black is: " + rs.getPropertyValue('--black'));
+ 
+ 
 }
 
 // Create a function for setting a variable value
@@ -37,6 +39,8 @@ function isHome() {
         return " flip";
     else
         return "";
+
+        
 }
 
 
@@ -217,8 +221,25 @@ return html;
 
 async function getStandings() 
 {
-        var requestOptions = { method: 'GET', redirect: 'follow'};
-        let response = await fetch("https://api.sportradar.com/americanfootball/trial/v2/en/seasons/sr:season:90233/standings.json?round=1&api_key=" + localStorage.getItem("API_KEY") , requestOptions);
+        var requestOptions = {
+            //'Access-Control-Allow-Origin':'https://api.sportradar.com', 
+            'Referrer-Policy': 'Origin',
+            method: 'GET', 
+            redirect: 'follow',
+            //credentials: 'same-origin', 
+            headers:
+                {
+                    //mode:'no-cors'
+                    //'Content-Type': 'application/json'
+                    //'Accept': 'application/json',
+                    //'Access-Control-Allow-Origin': 'https://api.sportradar.com',
+                    //'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers , X-Requested-With, Content-Type, Authorization',
+                }
+                //mode:'no-cors', 
+                //'origin-list':'*',
+            };
+        //var requestOptions = { method: 'GET', redirect: 'follow', headers: new Headers({'Content-Type': 'application/json','Access-Control-Allow-Origin': '*'}), 'Access-Control-Allow-Origin':  'https://api.sportradar.com', mode: 'no-cors'};
+        let response = await fetch("https://api.sportradar.com/americanfootball/trial/v2/en/seasons/sr:season:90233/standings.json?round=1&api_key=" + localStorage.getItem("API_KEY"), requestOptions);
         let data = await response.json();
         return data; 
 }
@@ -298,8 +319,8 @@ async function Standings()
 
 async function getProbabilities() 
 {
-        var requestOptions = { method: 'GET', redirect: 'follow'};
-        let response = await fetch("https://api.sportradar.com/americanfootball/trial/v2/en/seasons/sr:season:90233/probabilities.json?api_key=" + localStorage.getItem("API_KEY") , requestOptions);
+    var requestOptions = {method: 'GET', redirect: 'follow', 'Access-Control-Allow-Origin': 'https://api.sportradar.com', referrerPolicy: 'origin-when-cross-origin', mode: 'no-cors'};
+    let response = await fetch("https://api.sportradar.com/americanfootball/trial/v2/en/seasons/sr:season:90233/probabilities.json?api_key=" + localStorage.getItem("API_KEY") , requestOptions);
         let data = await response.json();
         return data; 
 }
@@ -345,11 +366,28 @@ async function Probabilities()
 
 async function getScores()
 {
-    var requestOptions = {method: 'GET', redirect: 'follow'};
-    let response = await fetch("https://api.sportradar.com/americanfootball/trial/v2/en/schedules/live/summaries.json?api_key=" + localStorage.getItem("API_KEY") , requestOptions)
+    var requestOptions = {method: 'GET', redirect: 'follow', 'Access-Control-Allow-Origin': 'https://api.sportradar.com', referrerPolicy: 'origin-when-cross-origin', mode: 'no-cors'};
+    let response = await fetch("https://api.sportradar.com/americanfootball/trial/v2/en/schedules/live/summaries.json?api_key=" + localStorage.getItem("API_KEY" ) , requestOptions)
     let data = await response.json();
     return data;
 }
+
+
+function IsGameDay()
+{
+    const d = new Date();
+    let dateUTC = d.getUTCDate();
+    let day = d.getUTCDay();
+    let hour = d.getUTCHours();
+    console.log("UTC date:"+ dateUTC +" CST date:" + d + "Day:" + day + "hour:" + hour);
+
+    if ((day == 0 && hour > 16 ) || (day == 2 && hour >= 0) || (day == 2 && hour <= 4)  || (day == 4 && hour < 22) || (day == 5 && hour < 3 ) )  { console.log("GAME DAY"); return 'true';} 
+    else
+        return 'false';
+
+}
+
+
 
 
 async function Scores()
@@ -364,11 +402,7 @@ async function Scores()
     var matchstatus;
 
 
-    const d = new Date();
-    let day = d.getUTCDay();
-    let hour = d.getUTCHours();
 
-    if ((day == 0 && hour > 15 ) || (day == 1 && hour > 11) || (day == 4 && hour < 5)) { console.log("GAME DAY"); } 
     
     getScores()
       .then (result => 
