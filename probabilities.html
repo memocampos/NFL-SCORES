@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <script type="text/javascript" src="static/scripts.js"></script>
+</head>
+
+<body>
+<h1>NFL 🏈 Probabilites</h1>
+<h2>Season 2022</h2>
+<span id="demo">NFL 🏈 Scrolling Scores</span>
+
+
+<script>
+var event_id;
+var home;
+var away;
+var home_probability;
+var away_probability;
+let probabilities = [];
+let textHTML ="";
+let strJSON = "";
+
+function generateArray(i,event_id,home,home_probability,away,away_probability){
+
+    probabilities[i] = i + " ID:" + event_id + " Home:" + home + " Probability:" + home_probability + " away:" + away + " Probability:" + away_probability;
+    strJSON += '{/"id/" :' + i + ',' + '{/"event_id/" :' + event_id + ',' + '{/"home/" :' + home + ',' + '{/"home_probability/" :' + home_probability + ','+ '{/"away/" :' + away + ','+ '{/"away_probability/" :' + away_probability + '},' 
+
+    textHTML += probabilities[i] + '<br>';
+    
+    //if (i == 100) console.log(text);
+
+}
+
+function print_probabilities() {
+    //probabilities[0] = "memo";
+
+
+    //console.log(probabilities[1]);
+    //console.log(textHTML);
+    document.getElementById("demo").innerHTML = textHTML;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  getProbabilities()
+        .then(result => {
+
+            timestamp = result.generated_at;
+            //console.log(result);
+            
+            console.log(result.sport_event_probabilities.length);
+            
+            for (var i = 0; i < result.sport_event_probabilities.length; i++){
+                event_id =  result.sport_event_probabilities[i].sport_event.id;
+                home = result.sport_event_probabilities[i].sport_event.competitors[0].abbreviation;
+                away = result.sport_event_probabilities[i].sport_event.competitors[1].abbreviation;
+                home_probability = result.sport_event_probabilities[i].markets[0].outcomes[0].probability;
+                away_probability = result.sport_event_probabilities[i].markets[0].outcomes[1].probability;
+                generateArray(i,event_id,home,home_probability,away,away_probability);
+
+                //Show Probabilities on Console
+                //console.log(event_id + " " + home + " " + home_probability + " " + away + " " + away_probability   )
+                //IF Event found do something        
+                //if ('sr:sport_event:33623327' == result.sport_event_probabilities[i].sport_event.id)
+                //    console.log(result.sport_event_probabilities[i].sport_event.id);
+
+
+
+            }
+            print_probabilities();
+            console.log(strJSON);
+
+        })
+        .catch(error => console.log('error', error));
+
+
+        
+  
+</script>
+</body>
+</html>

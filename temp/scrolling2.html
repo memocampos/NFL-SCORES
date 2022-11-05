@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NFL Scrolling Scores</title>
+    <style>
+
+
+      body 
+      {
+        background: black;
+        font-size: 40vh;
+        font-weight: 900;
+        color: #BEBEBE;
+        font-family: sans-serif;
+        text-align: center;
+      }
+
+      .responsive 
+      {
+          width: 80vh;
+          height: 80vh;
+          max-width: 600px;
+          min-width: 2.5em;
+          max-height: 600px;
+          min-height: 2.5em;
+
+      }
+
+      .home 
+      {
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+      }
+
+      .contentAlignVertically
+      {
+        display: flex;
+        align-items:center;
+        justify-content:center;
+      }
+
+
+
+
+    </style>
+  </head>
+  
+  <body>
+
+    <marquee width ="100%" scrollamount="50"  onmouseover='this.stop()' onmouseout='this.start()' loop="99" class="path">
+
+      <div class="contentAlignVertically">
+
+        <img src="images/helmet/PIT.png" alt="" class="responsive"> 43 - 12 <img src="images/helmet/GB.png" alt="" class="responsive home">&nbsp;&nbsp;&nbsp;
+        <img src="images/helmet/ARZ.png" alt="" class="responsive"> 2 - 12 <img src="images/helmet/ATL.png" alt="" class="responsive home">&nbsp;&nbsp;&nbsp;
+        <img src="images/helmet/BLT.png" alt="" class="responsive"> 23 - 3 <img src="images/helmet/BUF.png" alt="" class="responsive home">&nbsp;&nbsp;&nbsp;
+        <img src="images/helmet/CAR.png" alt="" class="responsive"> 6 - 2 <img src="images/helmet/BUF.png" alt="" class="responsive home">&nbsp;&nbsp;&nbsp;
+        <img src="images/helmet/BLT.png" alt="" class="responsive"> 2 - 16 <img src="images/helmet/BUF.png" alt="" class="responsive home">&nbsp;&nbsp;&nbsp;
+        <img src="images/helmet/BLT.png" alt="" class="responsive"> 32 - 1 <img src="images/helmet/BUF.png" alt="" class="responsive home">&nbsp;&nbsp;&nbsp;
+        <img src="images/helmet/BLT.png" alt="" class="responsive"> 12 - 13 <img src="images/helmet/BUF.png" alt="" class="responsive home">&nbsp;&nbsp;&nbsp;
+        <img src="images/helmet/BLT.png" alt="" class="responsive"> 24 - 14 <img src="images/helmet/BUF.png" alt="" class="responsive home">&nbsp;&nbsp;&nbsp;
+
+
+      </div>
+  </marquee>
+  </body>
+</html>

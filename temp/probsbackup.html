@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <script type="text/javascript" src="static/scripts.js"></script>
+</head>
+
+<body>
+<h1>NFL 🏈 Probabilites</h1>
+<h2>Season 2022</h2>
+<span id="demo">TEXT HERE.</span>
+
+
+<script>
+
+let probabilities = [];
+
+async function generateArray(i,event_id,home,home_probability,away,away_probability){
+
+    probabilities[i] = i + " ID:" + event_id + " Home:" + home + " Probability:" + home_probability + " away:" + away + " Probability:" + away_probability;
+
+    
+    //console.log(probabilities[i]);
+    //if (i == 100) console.log(text);
+
+}
+
+async function print_probabilities() {
+    //probabilities[0] = "memo";
+    console.log(probabilities);
+
+
+}
+
+
+      var event_id;
+        var home;
+        var away;
+        var home_probability;
+        var away_probability;
+
+
+
+
+        var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+        };
+
+        fetch("https://api.sportradar.com/americanfootball/trial/v2/en/seasons/sr:season:90233/probabilities.json?api_key=nv6dazkpa38qvrfpa285dtez", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+
+            timestamp = result.generated_at;
+            //console.log(result);
+            document.getElementById("demo").innerHTML = timestamp;
+            console.log(result.sport_event_probabilities.length);
+            
+            for (var i = 0; i < result.sport_event_probabilities.length; i++){
+                event_id =  result.sport_event_probabilities[i].sport_event.id;
+                home = result.sport_event_probabilities[i].sport_event.competitors[0].abbreviation;
+                away = result.sport_event_probabilities[i].sport_event.competitors[1].abbreviation;
+                home_probability = result.sport_event_probabilities[i].markets[0].outcomes[0].probability;
+                away_probability = result.sport_event_probabilities[i].markets[0].outcomes[1].probability;
+                generateArray(i,event_id,home,home_probability,away,away_probability);
+
+                //console.log(event_id + " " + home + " " + home_probability + " " + away + " " + away_probability   )
+                        
+
+                if ('sr:sport_event:33623327' == result.sport_event_probabilities[i].sport_event.id)
+                    console.log(result.sport_event_probabilities[i].sport_event.id);
+
+
+
+            }
+
+
+
+        })
+        .catch(error => console.log('error', error));
+
+
+
+
+
+
+
+
+
+
+
+
+
+  getProbabilities();
+
+  
+</script>
+</body>
+</html>

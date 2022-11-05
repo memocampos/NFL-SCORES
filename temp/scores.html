@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <script type="text/javascript" src="static/scripts.js"></script>
+</head>
+
+<body>
+<h1>NFL live results feed</h1>
+<h2>Sunday Games</h2>
+<p id="demo">TURN ON CORS.</p>
+<p id="demonio"></p>
+
+<script>
+
+
+
+
+
+
+
+var teamhome;
+var teamhomeabbreviation;
+var teamaway;
+var teamawayabbreviation;
+var teamawayscore;
+var status;
+var matchstatus;
+var txt = "";
+
+
+
+const d = new Date();
+let day = d.getUTCDay();
+let hour = d.getUTCHours();
+document.getElementById("demonio").innerHTML = day;
+
+
+if ((day == 0 && hour > 15 ) || (day == 1 && hour > 11) || (day == 4 && hour < 5)) { console.log("GAME DAY"); }
+
+
+
+var requestOptions = {method: 'GET', redirect: 'follow'};
+fetch("https://api.sportradar.com/americanfootball/trial/v2/en/schedules/live/summaries.json?api_key=nv6dazkpa38qvrfpa285dtez", requestOptions)
+  .then(response => response.json()) 
+  .then(result => {
+ 
+
+    timestamp = result.generated_at;
+    txt = generateHTML('BLT','23','20','CLV') + generateHTML('ARZ','42','34','NO') + generateHTML('CAR','21','3','TB');
+        //txt += txt + generateHTML('BLT','23','20','CLV');
+        //txt += txt + generateHTML('CAR','21','3','TB');
+
+        console.log(txt);
+    for (let i=0;i<result.summaries.length; i++)
+      {
+        matchid = result.summaries[i].sport_event.id
+        teamhome = result.summaries[i].sport_event.competitors[0].name;
+        teamhomeabbreviation = result.summaries[i].sport_event.competitors[0].abbreviation;
+        teamhomescore = result.summaries[i].sport_event_status.home_score;
+        teamaway = result.summaries[i].sport_event.competitors[1].name;
+        teamawayabbreviation = result.summaries[i].sport_event.competitors[1].abbreviation;
+        teamawayscore = result.summaries[i].sport_event_status.away_score;
+        matchstatus = result.summaries[i].sport_event_status.match_status;
+        console.log(matchid + " - '" + teamaway + "' " + teamawayabbreviation + " " + teamawayscore + " - " + teamhomescore + " " + teamhomeabbreviation + " '" + teamhome);
+        
+        
+        txt += teamawayabbreviation + " " + teamawayscore + " - " + teamhomescore + " " + teamhomeabbreviation + '<br>' ;
+
+        console.log(txt);
+        console.log(generateHTML('ARZ','3','6','PIT'));
+
+        txt = "";
+        txt = generateHTML('BLT','23','20','CLV') + generateHTML('ARZ','42','34','NO') + generateHTML('CAR','21','3','TB');
+        //txt += txt + generateHTML('BLT','23','20','CLV');
+        //txt += txt + generateHTML('CAR','21','3','TB');
+
+        console.log(txt);
+
+
+      }
+
+
+} )
+  .catch(error => console.log('Error'));
+  
+</script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+{
+    "generated_at": "2022-10-14T02:47:23+00:00",
+    "summaries": [
+        {
+            "sport_event": {
+                "id": "sr:sport_event:33623327",
+                "start_time": "2022-10-14T00:15:00+00:00",
+                "start_time_confirmed": true,
+                "sport_event_context": {
+                    "sport": {
+                        "id": "sr:sport:16",
+                        "name": "American Football"
+                    },
+                    "category": {
+                        "id": "sr:category:43",
+                        "name": "USA",
+                        "country_code": "USA"
+                    },
+                    "competition": {
+                        "id": "sr:competition:31",
+                        "name": "NFL",
+                        "gender": "men"
+                    },
+                    "season": {
+                        "id": "sr:season:90233",
+                        "name": "NFL 22\/23",
+                        "start_date": "2022-09-08",
+                        "end_date": "2023-02-13",
+                        "year": "22\/23",
+                        "competition_id": "sr:competition:31"
+                    },
+                    "stage": {
+                        "order": 1,
+                        "type": "league",
+                        "phase": "regular season",
+                        "start_date": "2022-09-08",
+                        "end_date": "2023-01-09",
+                        "year": "22\/23"
+                    },
+                    "round": {
+                        "number": 1
+                    },
+                    "groups": [
+                        {
+                            "id": "sr:league:64953",
+                            "name": "NFL 22\/23"
+                        },
+                        {
+                            "id": "sr:league:64965",
+                            "name": "NFL 22\/23, NFC",
+                            "group_name": "NFC"
+                        },
+                        {
+                            "id": "sr:league:64967",
+                            "name": "NFL 22\/23, NFC East",
+                            "group_name": "NFC East"
+                        },
+                        {
+                            "id": "sr:league:64969",
+                            "name": "NFL 22\/23, NFC North",
+                            "group_name": "NFC North"
+                        }
+                    ]
+                },
+                "coverage": {
+                    "live": true
+                },
+                "competitors": [
+                    {
+                        "id": "sr:competitor:4391",
+                        "name": "Chicago Bears",
+                        "country": "USA",
+                        "country_code": "USA",
+                        "abbreviation": "CHI",
+                        "qualifier": "home",
+                        "state": "IL"
+                    },
+                    {
+                        "id": "sr:competitor:4432",
+                        "name": "Washington Commanders",
+                        "country": "USA",
+                        "country_code": "USA",
+                        "abbreviation": "WAS",
+                        "qualifier": "away",
+                        "state": "MD"
+                    }
+                ],
+                "venue": {
+                    "id": "sr:venue:2109",
+                    "name": "Soldier Field",
+                    "capacity": 61500,
+                    "city_name": "Chicago",
+                    "country_name": "USA",
+                    "map_coordinates": "41.862498,-87.616979",
+                    "country_code": "USA",
+                    "timezone": "America\/Chicago"
+                }
+            },
+            "sport_event_status": {
+                "status": "live",
+                "match_status": "4th_quarter",
+                "home_score": 7,
+                "away_score": 12,
+                "period_scores": [
+                    {
+                        "home_score": 0,
+                        "away_score": 0,
+                        "type": "regular_period",
+                        "number": 1
+                    },
+                    {
+                        "home_score": 0,
+                        "away_score": 3,
+                        "type": "regular_period",
+                        "number": 2
+                    },
+                    {
+                        "home_score": 7,
+                        "away_score": 0,
+                        "type": "regular_period",
+                        "number": 3
+                    }
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,62 @@
+        <quote id="demo">NFL Scores</quote>
+
+        <script >
+          demo=generateHTML('BLT','23','20','CLV') + generateHTML('ARZ','42','34','NO') + generateHTML('CAR','21','3','TB');
+          document.getElementById("demo").innerHTML = demo;
+          console.log(demo);
+        </script>
+
+
+
+        <div class="game">
+          <div class="score">
+            <img id="PIT" class="responsive" alt="away"/>
+            <script>document.getElementById("PIT").src = createSRC('PIT'); isHome('PIT',document.getElementById("PIT").alt);</script>
+          </div>
+          <div class="score">1 - 15</div>
+          <div>
+            <img id="CHI" class="responsive" alt="home"/>
+            <script>document.getElementById("CHI").src = createSRC('CHI'); isHome('CHI',document.getElementById("CHI").alt);</script>
+          </div>
+        </div>
+
+
+        <div class="game">
+          <div class="score">
+            <img id="ARZ" class="responsive" alt="away"/>
+            <script>document.getElementById("ARZ").src = createSRC('ARZ'); isHome('ARZ',document.getElementById("ARZ").alt);</script>
+          </div>
+          <div class="score">1 - 15</div>
+          <div>
+            <img id="ATL" class="responsive" alt="home"/>
+            <script>document.getElementById("ATL").src = createSRC('ATL'); isHome('ATL',document.getElementById("ATL").alt);</script>
+          </div>
+        </div>
+
+ 
+
+        <div class="game">
+          <div class="score">
+            <img id="BLT" class="responsive" alt="away"/>
+            <script>document.getElementById("BLT").src = createSRC('BLT'); isHome('BLT',document.getElementById("BLT").alt);</script>
+          </div>
+          <div class="score">1 - 15</div>
+          <div>
+            <img id="CAR" class="responsive" alt="home"/>
+            <script>document.getElementById("CAR").src = createSRC('CAR'); isHome('CAR',document.getElementById("CAR").alt);</script>
+          </div>
+        </div>
+
+
+ 
+        <div class="game">
+          <div class="score">
+            <img id="GB" class="responsive" alt="away"/>
+            <script>document.getElementById("GB").src = createSRC('GB'); isHome('GB',document.getElementById("GB").alt);</script>
+          </div>
+          <div class="score">1 - 15</div>
+          <div>
+            <img id="CIN" class="responsive" alt="home"/>
+            <script>document.getElementById("CIN").src = createSRC('CIN'); isHome('CIN',document.getElementById("CIN").alt);</script>
+          </div>
+        </div>
